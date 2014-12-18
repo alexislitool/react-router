@@ -1,41 +1,21 @@
 module.exports = function (config) {
   config.set({
 
-    basePath: '',
+    browsers: [ 'Chrome' ],
 
-    frameworks: [ 'mocha', 'browserify' ],
+    frameworks: [ 'mocha' ],
 
     files: [
       'modules/**/__tests__/*-test.js'
     ],
 
     preprocessors: {
-      'modules/**/__tests__/*-test.js': [ 'browserify' ]
+      'modules/**/__tests__/*-test.js': [ 'webpack', 'sourcemap' ]
     },
 
-    browserify: {
-      debug: true,
-      watch: true,
-      transform: [
-        [ 'reactify', { 'es6': true } ],
-        'envify'
-      ]
-    },
+    webpack: {
+      devtool: 'inline-source-map'
+    }
 
-    reporters: [ 'progress' ],
-
-    port: 9876,
-
-    colors: true,
-
-    logLevel: config.LOG_INFO,
-
-    autoWatch: true,
-
-    browsers: [ 'Chrome' ],
-
-    captureTimeout: 60000,
-
-    singleRun: false
   });
 };
